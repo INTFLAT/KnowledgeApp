@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}ナレッジ管理アプリ{% endblock %}
+{% block h5 %}ナレッジ管理アプリ{% endblock %}
+
+{% block content %}
+
+{% csrf_token %}
+
+<form method="POST" enctype="multipart/form-data" class="p-4 m-4 bg-light border border-success rounded form-group">
+  {% csrf_token %}
+  {{form_category.as_p}}
+  <button type="submit">追加</button>
+</form>
+
+<h2>カテゴリ一覧</h2>
+{% for category in categories %}
+<div style="display:flex;">
+  <p style="margin-right: 15px;">{{ category.name }}</p>
+    <form method="POST" action="{% url 'knowledge:delete_category' pk=category.id %}">
+     {% csrf_token %}
+     <button type="submit">Delete</button>
+    </form>
+</div>
+{% empty %}
+<tr>
+  <td colspan="3">No category available.</td>
+</tr>
+{% endfor %}
+
+
+{% endblock %}

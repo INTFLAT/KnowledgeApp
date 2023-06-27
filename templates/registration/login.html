@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>ログイン</h1>
-  <form method="post" class="p-4 m-4 bg-light border border-success rounded from-group">
+  <form method="post" class="p-4 m-4 bg-light border border-dark rounded from-group">
     {% csrf_token %}
     {% for error in form.errors.values %}
       {{ error }}

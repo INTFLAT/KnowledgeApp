@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block h1 %}ナレッジ管理アプリ{% endblock %}
+{% block content %}
+  <div class="p-4 m-4 bg-light border border-success rounded">
+    <label for="title">Title:</label>
+    <h2 class="text-success">{{ knowledge_detail.title }}</h2>
+    <label for="category">Category:</label>
+    <p>{{ knowledge_detail.category }}</p>
+    <label for="content">Content:</label>
+      <div class="border p-4 mb-2">    
+        <p>{{ knowledge_detail.content }}</p>
+      </div>
+    <a href="{% url 'knowledge:top' %}" class="btn btn-primary">一覧へ</a>
+    <a href="{% url 'knowledge:edit' pk=knowledge_detail.id %} " class="btn btn-primary">編集する</a>
+    <form method="post" action="{% url 'knowledge:delete' knowledge_detail.pk %}">{% csrf_token %}<input type="submit" value="削除する" class="btn btn-primary"></form>
+  </div>
+{% endblock content %}
